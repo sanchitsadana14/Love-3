@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,7 +42,7 @@ button{
 #yes{
   background:#ff4b5c;
   color:white;
-  left:30%;
+  left:28%;
   top:65%;
   box-shadow:0 0 20px #ff4b5c;
 }
@@ -55,13 +56,13 @@ button{
 
 .photo{
   position:absolute;
-  width:170px;
+  width:180px;
   border-radius:15px;
   box-shadow:0 0 25px rgba(0,0,0,0.5);
   left:50%;
   top:35%;
   transform:translate(-50%,-50%);
-  animation:fadeIn 0.5s ease;
+  animation:fadeIn 0.4s ease;
 }
 
 @keyframes fadeIn{
@@ -105,7 +106,7 @@ let yesTexts=[
 
 function moveNo(){
 
-  if(count<pics.length){
+  if(count < pics.length){
 
     if(currentPhoto){
       currentPhoto.remove();
@@ -119,7 +120,7 @@ function moveNo(){
     currentPhoto=img;
   }
 
-  if(count<yesTexts.length){
+  if(count < yesTexts.length){
     yes.innerText=yesTexts[count];
   }
 
@@ -129,7 +130,7 @@ function moveNo(){
   no.style.top=Math.random()*80+"%";
 
   if(count>=5){
-    yes.style.transform="scale(1.8)";
+    yes.style.transform="scale(1.9)";
   }
 }
 
@@ -138,6 +139,7 @@ no.addEventListener("touchstart",function(e){e.preventDefault();moveNo();});
 no.addEventListener("click",moveNo);
 
 yes.addEventListener("click",function(){
+
   document.body.innerHTML=`
   <h1 style="margin-top:40px;">
   I knew you would say YES Anushka ❤️<br><br>
@@ -145,13 +147,13 @@ yes.addEventListener("click",function(){
   Forever yours,<br>
   Sanchit
   </h1>
-  <img src="love.jpg" style="width:280px;max-width:90%;border-radius:20px;box-shadow:0 0 40px red;">
+  <img src="love.jpg" style="width:300px;max-width:90%;border-radius:20px;box-shadow:0 0 40px red;">
   <audio autoplay loop>
     <source src="song.mp3" type="audio/mp3">
   </audio>
   `;
 
-  for(let i=0;i<25;i++){
+  for(let i=0;i<30;i++){
     let heart=document.createElement("div");
     heart.className="heart";
     heart.innerHTML="❤️";
