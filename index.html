@@ -1,26 +1,24 @@
-
 <!DOCTYPE html>
 <html>
 <head>
 <title>For Anushka ❤️</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-
 body{
   margin:0;
   padding:0;
   text-align:center;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #ffdde1, #ee9ca7);
-  background-size: 400% 400%;
-  animation: gradientBG 10s ease infinite;
+  font-family:'Segoe UI',sans-serif;
+  background:linear-gradient(-45deg,#ff9a9e,#fad0c4,#ffdde1,#ee9ca7);
+  background-size:400% 400%;
+  animation:gradientBG 10s ease infinite;
   overflow:hidden;
 }
 
-@keyframes gradientBG {
-  0% {background-position: 0% 50%;}
-  50% {background-position: 100% 50%;}
-  100% {background-position: 0% 50%;}
+@keyframes gradientBG{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
 }
 
 h1{
@@ -57,27 +55,29 @@ button{
 
 .photo{
   position:absolute;
-  width:120px;
+  width:170px;
   border-radius:15px;
-  box-shadow:0 0 20px rgba(0,0,0,0.4);
-  animation: pop 0.5s ease;
+  box-shadow:0 0 25px rgba(0,0,0,0.5);
+  left:50%;
+  top:35%;
+  transform:translate(-50%,-50%);
+  animation:fadeIn 0.5s ease;
 }
 
-@keyframes pop{
-  from{transform:scale(0.5);opacity:0;}
-  to{transform:scale(1);opacity:1;}
+@keyframes fadeIn{
+  from{opacity:0; transform:translate(-50%,-50%) scale(0.8);}
+  to{opacity:1; transform:translate(-50%,-50%) scale(1);}
 }
 
 .heart{
   position:absolute;
-  animation: float 5s linear infinite;
+  animation:float 5s linear infinite;
 }
 
 @keyframes float{
-  0%{transform: translateY(100vh) scale(1);}
-  100%{transform: translateY(-10vh) scale(1.5);}
+  0%{transform:translateY(100vh) scale(1);}
+  100%{transform:translateY(-10vh) scale(1.5);}
 }
-
 </style>
 </head>
 
@@ -89,14 +89,14 @@ button{
 <button id="no">No 😒</button>
 
 <script>
+let no=document.getElementById("no");
+let yes=document.getElementById("yes");
+let count=0;
+let currentPhoto=null;
 
-let no = document.getElementById("no");
-let yes = document.getElementById("yes");
-let count = 0;
+let pics=["pic1.jpg","pic2.jpg","pic3.jpg","pic4.jpg"];
 
-let pics = ["pic1.jpg","pic2.jpg","pic3.jpg","pic4.jpg"];
-
-let yesTexts = [
+let yesTexts=[
 "Please naaa 🥺",
 "Mat bolo no 😭",
 "Last chance baby 😢",
@@ -105,43 +105,40 @@ let yesTexts = [
 
 function moveNo(){
 
-  if(count < pics.length){
+  if(count<pics.length){
 
-    let img = document.createElement("img");
-    img.src = pics[count];
-    img.className = "photo";
+    if(currentPhoto){
+      currentPhoto.remove();
+    }
 
-    img.style.left = (20 + Math.random()*60) + "%";
-    img.style.top = (20 + Math.random()*40) + "%";
-    img.style.transform = "rotate(" + (Math.random()*20 - 10) + "deg)";
-
+    let img=document.createElement("img");
+    img.src=pics[count];
+    img.className="photo";
     document.body.appendChild(img);
+
+    currentPhoto=img;
   }
 
-  if(count < yesTexts.length){
-    yes.innerText = yesTexts[count];
+  if(count<yesTexts.length){
+    yes.innerText=yesTexts[count];
   }
 
   count++;
 
-  no.style.left = Math.random()*80 + "%";
-  no.style.top = Math.random()*80 + "%";
+  no.style.left=Math.random()*80+"%";
+  no.style.top=Math.random()*80+"%";
 
-  if(count >= 5){
-    yes.style.transform = "scale(1.8)";
+  if(count>=5){
+    yes.style.transform="scale(1.8)";
   }
 }
 
-no.addEventListener("mouseover", moveNo);
-no.addEventListener("touchstart", function(e){
-  e.preventDefault();
-  moveNo();
-});
-no.addEventListener("click", moveNo);
+no.addEventListener("mouseover",moveNo);
+no.addEventListener("touchstart",function(e){e.preventDefault();moveNo();});
+no.addEventListener("click",moveNo);
 
-yes.addEventListener("click", function(){
-
-  document.body.innerHTML = `
+yes.addEventListener("click",function(){
+  document.body.innerHTML=`
   <h1 style="margin-top:40px;">
   I knew you would say YES Anushka ❤️<br><br>
   Tum par marta hu, sach kehta hu 💖<br><br>
@@ -155,7 +152,7 @@ yes.addEventListener("click", function(){
   `;
 
   for(let i=0;i<25;i++){
-    let heart = document.createElement("div");
+    let heart=document.createElement("div");
     heart.className="heart";
     heart.innerHTML="❤️";
     heart.style.left=Math.random()*100+"vw";
@@ -164,7 +161,6 @@ yes.addEventListener("click", function(){
     document.body.appendChild(heart);
   }
 });
-
 </script>
 
 </body>
